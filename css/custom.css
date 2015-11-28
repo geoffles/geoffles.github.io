@@ -1,0 +1,15 @@
+p.figure  em {    
+    display: inline-block;
+    font-size: small;    
+}
+
+p.figure img{
+    margin:0 auto;
+}
+
+p.figure{
+    padding:10px;
+    background-color:#f5f5f5;
+    border: 1px solid black;
+    border-radius: 5px;
+}

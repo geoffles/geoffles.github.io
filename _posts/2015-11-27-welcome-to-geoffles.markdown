@@ -2,7 +2,7 @@
 layout: post
 title:  "Welcome to Geoffles!"
 date:   2015-11-27 09:11:25 +0200
-categories: about
+categories: About
 ---
 Welcome to my blog!
 
