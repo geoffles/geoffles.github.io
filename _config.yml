@@ -16,3 +16,4 @@ github_username:  geoffles
 
 # Build settings
 markdown: kramdown
+highlighter: coderay
