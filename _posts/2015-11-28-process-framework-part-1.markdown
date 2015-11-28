@@ -42,17 +42,19 @@ Bearing in mind that this framework was built to fit in with an existing service
 
 In the above figure, note the `Process Manager`. This guy, who is a mediator, is an important architectural element that binds the presentation layer (blue layers) with the process layer (green).
 
-In class diagram form, these elements look like this:
+In component diagram form, these elements look like this:
 
 ![Class diagram for process manager architecture](/img/frameworks/pfx-classes.png)
-***Classes**: Note that there is no direct interaction between the views/apis and the processes (implementing process mapping).*
+***Components**: Note that there is no direct interaction between the views/apis and the processes (implementing process mapping).*
 {: class="figure"}
 
-All data for the business process is stored in the `<<Data Only>>` `Process Model`. The function of the process is to guide the user through creating a process model which can then be used to perform a business function. Each process step has it's own class (state), and the process class itself becomes very thin, delegating it's work to the current process step - i.e. the `State Pattern`[^1].   
+All data for the business process is stored in the `<<Data Only>>` `Process Model`. The function of the process is to guide the user through creating a process model which can then be used to perform a business function. Each process step has it's own class (state), and the process class itself becomes very thin, delegating it's work to the current process step - i.e. the `State Pattern`[^1].
 
-The purpose behind this design is that the complexity of navigating from step to step is hidden from the presentation layer, as that layer has no business "knowing" which step to go to next. It should ask the process which governs it, and does so via a mediator.
+A process implements a process mapping. This is a little different to a normal OO `implements`, since the process mapping is an interface that includes mapping meta data. I.e. there is a logical model which contains information about how the presentation layer must consume or be bound to the process.    
 
-This in turn allows the navigation complexity to be managed in an encapsulated way - which I have chosen to implement using a state machine.
+The purpose of this design is that the complexity of navigating from step to step is hidden from the presentation layer, as that layer has no business "knowing" which step to go to next. It should ask the process which governs it, and does so via a mediator.
+
+This in turn allows the navigation complexity to be managed in an encapsulated way that is suitable to process flow - which I have chosen to implement using a state machine.
 
 #  Why a State Machine?
 State Machines are great at managing complexity in situations where you have units of work which are effectively isolated in their function but must exist in a collaborative way with other units. In other words, you have multiple states, each with their own behaviours, but must transfer to other states.
