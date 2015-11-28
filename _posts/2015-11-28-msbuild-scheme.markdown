@@ -30,7 +30,8 @@ The assumed file tree for this project is:
         -  SomeProject.csproj
         -  SomeProject.targets
         -  (Some project source files)
-    
+
+
 
 #  Root File: build.proj
 
@@ -131,4 +132,4 @@ I have a script which generates a .targets file for my project based on conventi
 
 From root, simply: `createTargets .\SomeProject\SomeProject.csproj`
 
-This will be available on my github in the not too distant future.
+Check out my github for a sample repo.
