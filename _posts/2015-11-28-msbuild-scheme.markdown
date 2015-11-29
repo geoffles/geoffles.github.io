@@ -21,17 +21,21 @@ The scheme features:
 
 #  File Tree
 
-The assumed file tree for this project is:
+Here is a file tree for our project
 
--  path\to\your\repo (project root)
-    -  build.proj
-    -  createTargets.bat
-    -  SomeProject
-        -  SomeProject.csproj
-        -  SomeProject.targets
-        -  (Some project source files)
-
-
+~~~
+|-- root
+|   |-- build.proj
+|   |-- createTargets.bat
+|   |-- SomeProject
+|   |   |-- SomeProject.csproj
+|   |   |-- SomeProject.targets
+|   |   |-- ...
+|   |-- SomeLibrary
+|   |   |-- SomeLibrary.csproj
+|   |   |-- SomeLibrary.targets
+|   |   |-- ...
+~~~
 
 #  Root File: build.proj
 
@@ -75,7 +79,7 @@ Your .targets files should contain targets to build individual modules of your s
     <!-- List Dependencies here -->
     <PropertyGroup>
         <SomeProjectDependsOn Condition=" '$(ExplicitTargetsOnly)' != 'true' ">
-            ADependencysTargetName
+            SomeLibrary
         </SomeProjectDependsOn>
     </PropertyGroup>
 
@@ -112,13 +116,16 @@ The convention of the project file's name carries through (CleanSomeProject, Som
 Note how the CleanAllDependsOn and BuildAllDependsOn are defined and include the targets. This is how the targets get added to the respective root targets.
 
 **Dependencies**
-To set your depencies, you can simply include the targets you want built first in the SomeProjectDependsOn property. As per MSBuild, these should be separated with a `;`
+To set your depencies, you can simply include the targets you want built first in the SomeProjectDependsOn property. As per MSBuild properties, these should be separated with a `;`
 
 **Configuration and Platform**
 These are injected into the project based on what is defined at build, and default to your Release|AnyCPU.
 
 **Relative Paths**
 The path of the csproj you're building must be relative to `build.proj`
+
+**ExplicitTargetsOnly**
+Sometimes you want to look at why only a specific project isn't building and not spam your console with the 50 dependencies. Set this property to true at runtime (`/p:ExplicitTargetsOnly=true`) to ignore dependencies.
 
 #  Running a Build
 
@@ -132,4 +139,4 @@ I have a script which generates a .targets file for my project based on conventi
 
 From root, simply: `createTargets .\SomeProject\SomeProject.csproj`
 
-Check out my github for a sample repo.
+Check out my [Github](https://github.com/geoffles/geoffles-msbuild-scheme) for a sample repo.
