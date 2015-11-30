@@ -2,6 +2,7 @@
 layout:	post
 title:	"Business Process Flow Framework for MVC - Part 1"
 categories:	Frameworks
+date:	2015-11-28 10:54:53 +0200
 tags:	[process, frameworks, state-machine]
 ---
 
