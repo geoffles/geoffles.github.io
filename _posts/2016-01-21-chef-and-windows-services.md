@@ -10,10 +10,6 @@ Deploying Windows services with chef can be a little tricky. The [`service`](htt
 
 Fortunately, this is not a deal breaker since creating services is actually pretty easy using a variety of approaches, and the simplest being `sc create`.
 
-So lets paint a picture of the how the services we'd like to deploy for our enterprise might look:
-
-![Would be picture here]()
-
 So our task breakdown is:
 
 1.  Create the service if it does not exist.
