@@ -6,7 +6,7 @@ categories:	Chef
 tags:	[chef, configuration, infrastructure]
 ---
 
-I've been playing around with Chef for the past few weeks and have found that whilst there is a lot of documentation, it's been difficult to a short, concise document describing how to set up your own Chef server and what all the bits are.
+I've been playing around with Chef for the past few weeks and have found that whilst there is a lot of documentation, it's been difficult to find a short, concise document describing how to set up your own Chef server and what all the bits are.
 
 * TOC
 {:toc}
