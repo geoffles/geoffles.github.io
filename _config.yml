@@ -17,3 +17,5 @@ github_username:  geoffles
 # Build settings
 markdown: kramdown
 highlighter: pygments
+kramdown:
+  enable_coderay: true

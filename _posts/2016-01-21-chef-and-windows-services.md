@@ -23,27 +23,24 @@ An [`execute`](https://docs.chef.io/execute.html) resource can run our `sc` comm
 
 So, it might look like this:
 
-<pre>
-  <code class="ruby">
+{% highlight ruby %}
 execute "Create FooService" do
     command "sc create \"FooService\" binPath= \"c:/Service/FooService.exe\""
     not_if {::Win32::Service.exists?("FooService")}
+{% endhighlight %}
 end
-  </code>
-</pre>
+
 Voile!
 
 # Stop the service
 
 This one is straight forward with the `service` or `windows_service` resource:
 
-<pre>
-  <code class="ruby">
+{% highlight ruby %}
 windows_service "FooService" do
     action :stop
 end
-  </code>
-</pre>
+{% endhighlight %}
 
 
 # Fetch the updated service files
@@ -54,23 +51,20 @@ This means I have two steps to "fetch": Download, Unpack.
 
 The download step is done with `remote_file`:
 
-<pre>
-  <code class="ruby">
+{% highlight ruby %}
 remote_file "c:/temp/Package.zip" do
     source "http://buildserver/lastest/package.zip"
     mode '0775'
     only_if {::File.directory?('C:/temp/') }
     action :create
 end
-  </code>
-</pre>
+{% endhighlight %}
 
 You can of course use `role` and `environment` attributes to inject the URL for the package.
 
 I've decided to use [7-Zip](www.7-zip.org/download.html) to do my unpacking, which I run with another execute resource:
  
-<pre>
-  <code class="ruby">
+{% highlight ruby %}
 execute 'UnpackServices' do
     command '7z x C:/temp/Package.zip -o"C:/Service" -y'
     environment(
@@ -78,8 +72,7 @@ execute 'UnpackServices' do
     )
     subscribes :run, 'remote_file[c:/temp/Package.zip]', :immediately
 end
-  </code>
-</pre>
+{% endhighlight %}
 
 Note that I'm subscribing to the `remote_file[c:/temp/Package.zip`. This is because the `remote_file` resource seems to execute asynchronously, so I need to wait for that to finish before trying to unpack it.
 
@@ -87,11 +80,9 @@ Note that I'm subscribing to the `remote_file[c:/temp/Package.zip`. This is beca
 
 Starting the service is straight forward. You can either use a new service resource (just provide a different name), or you can notify the existing service resource from your `UnpackServices`:
 
-<pre>
-  <code class="ruby">
+{% highlight ruby %}
 notifies :start, 'windows_service[FooService]', :immediately
-  </code>
-</pre>
+{% endhighlight %}
 
 # Conclusion
 
