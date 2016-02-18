@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/ui-bootstrap-csp.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-app="testApp1" ng-controller="testController">
+    <script type="text/ng-template" id="mytemplate.html">
+        <div class="modal-header">
+            <h3 class="modal-title">My Dialog!</h3>
+        </div>
+        <div class="modal-body">
+            SomeArg: <b>{{stuff}}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <script src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/angular-animate.js"></script>
+    <script src="/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript">
+        angular.module('testApp1', ['ngAnimate', 'ui.bootstrap']);
+        angular.module('testApp1').controller('testController', function ($scope, $uibModal) {
+            //Open a dialog
+            $scope.showMyDialog = function (someArg) {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'mytemplate.html',
+                    controller: 'testModalController',
+                    resolve: {
+                        someArg: function () {
+                            return someArg;
+                        }
+                    }
+                });
+
+                //Promise on close
+                modalInstance.result.then(function (result) {
+                    alert(result);
+                }, function () {
+                    alert('aborted');
+                });
+            }
+        });
+
+        angular.module('testApp1').controller('testModalController', function ($scope, $uibModalInstance, someArg) {
+            $scope.stuff = someArg;
+
+            $scope.ok = function () {
+                $uibModalInstance.close($scope.stuff);
+            }
+
+            $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+            }
+        });
+    </script>
+
+    <div >
+        <button class="btn btn-default" type="button" ng-click="showMyDialog('foo')">Open Dialog</button>
+    </div>
+</body>
+</html>
