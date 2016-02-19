@@ -6,6 +6,8 @@ categories:	Development
 tags:	[development, build, ms-build]
 ---
 
+Updated: 2016-02-19 *Added exclude target*
+
 #  Introduction
 
 This is the scheme I've used (with some variations) to set up a build with MS Build on my .NET Projects.
@@ -41,7 +43,7 @@ Here is a file tree for our project
 
 This is the file that binds everything together. It defines the `BuildAll` and `CleanAll` targets and imports everything.
 
-~~~ XML
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project
          ToolsVersion="4.0"
@@ -64,13 +66,13 @@ This is the file that binds everything together. It defines the `BuildAll` and `
     <Target Name="CleanAll" DependsOnTargets="@(CleanAllDependsOn)">
     </Target>
 </Project>
-~~~
+```
 
 #  Target files: SomeProject.targets
 
 Your .targets files should contain targets to build individual modules of your system. In these files we define what to build, and what it's dependencies are. These files should live next to your .csproj (or vbproj, etc) files and you can even add them to your solutions so that they are easy to edit. The example below is for a would be `SomeProject.csproj`.
 
-``` xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project
          ToolsVersion="4.0"
@@ -86,7 +88,7 @@ Your .targets files should contain targets to build individual modules of your s
     <!-- Hook in to top level targets here -->
     <ItemGroup>
         <CleanAllDependsOn Include="CleanSomeProject" />
-        <BuildAllDependsOn Include="SomeProject"/>
+        <BuildAllDependsOn Condition="!$(ExcludeTargets.Contains('SomeProject'))" Include="SomeProject"/>
     </ItemGroup>
 
     <!-- Projects to Build -->
@@ -126,6 +128,9 @@ The path of the csproj you're building must be relative to `build.proj`
 
 **ExplicitTargetsOnly**
 Sometimes you want to look at why only a specific project isn't building and not spam your console with the 50 dependencies. Set this property to true at runtime (`/p:ExplicitTargetsOnly=true`) to ignore dependencies.
+
+**ExcludeTargets**
+You might find yourself wanting to build everything except a project - for example, [WiX](http://wixtoolset.org/) projects tend to take quite a long time and you don't want them on your typical commandline build. In this case you can set the property to the target names you want to skip. Bear in mind that this specific implementation *is* case sensitive and and does not override the project being included as a dependency(i.e. only effective for projects that are not a dependency of others). eg: `/p:ExcludeTargets=Foo;Bar;Baz`
 
 #  Running a Build
 
