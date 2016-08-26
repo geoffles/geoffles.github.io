@@ -6,7 +6,7 @@ date:	2015-11-28 10:54:53 +0200
 tags:	[process, frameworks, state-machine]
 ---
 
-***Abstract:** A state machine based process framework for web.*
+***Abstract:*** *A state machine based process framework for web.*
 
 * TOC
 {:toc}
@@ -37,7 +37,7 @@ And so I set about making a framework for Asp.net MVC with the following charact
 Bearing in mind that this framework was built to fit in with an existing services architecture. The layer's for the system are as follows:
 
 ![Layer stack for the system](/img/frameworks/pfx-layerstack.png)
-***Layer stack**: "Core" and "Channel" refer to the repository and "Business Logic" layers in the existing architecture. The browser communicates with both the API and View layer components which source their information from the process layer via a "process manager" intermediary.*
+***Layer stack:*** *"Core" and "Channel" refer to the repository and "Business Logic" layers in the existing architecture. The browser communicates with both the API and View layer components which source their information from the process layer via a "process manager" intermediary.*
 {: class="figure"}
 
 In the above figure, note the `Process Manager`. This guy, who is a mediator, is an important architectural element that binds the presentation layer (blue layers) with the process layer (green).
@@ -45,7 +45,7 @@ In the above figure, note the `Process Manager`. This guy, who is a mediator, is
 In component diagram form, these elements look like this:
 
 ![Class diagram for process manager architecture](/img/frameworks/pfx-classes.png)
-***Components**: Note that there is no direct interaction between the views/apis and the processes (implementing process mapping).*
+***Components:*** *Note that there is no direct interaction between the views/apis and the processes (implementing process mapping).*
 {: class="figure"}
 
 All data for the business process is stored in the `<<Data Only>>` `Process Model`. The function of the process is to guide the user through creating a process model which can then be used to perform a business function. Each process step has it's own class (state), and the process class itself becomes very thin, delegating it's work to the current process step - i.e. the `State Pattern`[^1].
@@ -62,7 +62,7 @@ State Machines are great at managing complexity in situations where you have uni
 This allows us then to model a business process like this:
 
 ![A sample business process](/img/frameworks/pfx-flow.png)
-***States**: A sample business process. Each state, or activity may have it's own complexities, but are contained within the state.*
+***States:*** *A sample business process. Each state, or activity may have it's own complexities, but are contained within the state.*
 {: class="figure"}
 
 Just a minor note on State Machines vs the State Pattern: These are not the same thing, however the state pattern *can* be used to implement a state machine.
@@ -82,7 +82,7 @@ Well that seems simple enough... right? There's a little more "magic" to the imp
 Here is an overview of the WebAPI life cycle for an API call:
 
 ![Process framework lifecycle](/img/frameworks/pfx-lifecycle.png)
-***Life Cycle:** The process framework life cycle. Most of this work is performed by the `Process Manager`.*
+***Life Cycle:*** *The process framework life cycle. Most of this work is performed by the `Process Manager`.*
 {: class="figure"}
 
 #  Conclusion
