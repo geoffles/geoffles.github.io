@@ -18,7 +18,7 @@ This post is using chef zero and Windows, although Linux shouldn't be too differ
  - ChefDK
  - Somewhere to provision machines
 
- That's about it really - This post doesn't cover provisioning, but I have another post which does [here](http://pleasefixme).
+ That's about it really - This post doesn't cover provisioning, but I have another post which does [here]({% post_url 2016-08-24-chef-provisioning-windows %}).
 
 # Creating a data bags
 
