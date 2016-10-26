@@ -2,7 +2,7 @@
 layout:	post
 title:	"Friend Scope in C#"
 date:	2016-08-26 11:18:00 +0200
-categories:	Chef
+categories:	Programming
 tags:	[C#]
 ---
 
