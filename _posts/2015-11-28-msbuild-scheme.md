@@ -43,7 +43,7 @@ Here is a file tree for our project
 
 This is the file that binds everything together. It defines the `BuildAll` and `CleanAll` targets and imports everything.
 
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="utf-8"?>
 <Project
          ToolsVersion="4.0"
@@ -66,13 +66,13 @@ This is the file that binds everything together. It defines the `BuildAll` and `
     <Target Name="CleanAll" DependsOnTargets="@(CleanAllDependsOn)">
     </Target>
 </Project>
-```
+{% endhighlight %}
 
 #  Target files: SomeProject.targets
 
 Your .targets files should contain targets to build individual modules of your system. In these files we define what to build, and what it's dependencies are. These files should live next to your .csproj (or vbproj, etc) files and you can even add them to your solutions so that they are easy to edit. The example below is for a would be `SomeProject.csproj`.
 
-```xml
+{% highlight xml %}
 <?xml version="1.0" encoding="utf-8"?>
 <Project
          ToolsVersion="4.0"
@@ -108,7 +108,7 @@ Your .targets files should contain targets to build individual modules of your s
     </Target>
 
 </Project>
-```
+{% endhighlight %}
 
 
 **Project Name**
