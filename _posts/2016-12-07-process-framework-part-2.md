@@ -144,7 +144,7 @@ public interface IDoSometing : IProcessState
 
 ## Consuming the Bindings
 
-To illustrate, your view for this state can now have a button that looks something like this (note the `Url.GetExit`):
+To illustrate, your view for this state can now have a button that looks something like this (note the `Url.GetNext`):
 
 {% highlight html %}
 <button onclick="@Url.GetNext(Model, "$ViewContext().viewModel.toPostModel")">Next</button>
