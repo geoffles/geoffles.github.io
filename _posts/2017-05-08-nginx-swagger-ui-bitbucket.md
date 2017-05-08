@@ -75,7 +75,7 @@ You may also be asking *"Why the `accept` header?"*. Turns out that swagger fool
 
 You can now access your Swagger documents live from BitBucket through Swagger UI like so:
 
-`http://localhost:8080?url=http://localhost:8080/projects/XYZ/repos/browse/to/my/swagger.yml?at=refs%2Fhead%2Fmaster%26raw`
+`http://localhost:8080?url=http://localhost:8080/projects/XYZ/repos/browse/to/my/swagger.yml%3Fat=refs%2Fhead%2Fmaster%26raw`
 
 It's important to remember the `%26raw` which is a url encoded `&raw`, otherwise it loads the HTML page containing the file, instead of the file itself.
 
