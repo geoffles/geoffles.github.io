@@ -77,7 +77,7 @@ abstract class AbstractBuilder<T,R> : IBuilder<T>
     where R: class, IBuilder<T> 
     where T: new() 
 {
-    private T instance;
+    protected T instance;
 
     public AbstractBuilder()
     {
@@ -107,7 +107,7 @@ The same trick for C# also works in Java, although there are few Java-isms to to
 interface Builder<T> { }
 
 static abstract class AbstractBuilder<T,R extends Builder<T>> implements Builder<T> {
-    private T instance;
+    protected T instance;
     protected abstract T factory();
 
     public AbstractBuilder() {
