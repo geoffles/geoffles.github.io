@@ -21,7 +21,7 @@ abstract class AbstractBuilder {
     }
 }
 
-classs FooBuilder : AbstractBuilder {
+class FooBuilder : AbstractBuilder {
     public FooBuilder AddSomeStuff() {
         DoAddSomeStuff();
         return this;
