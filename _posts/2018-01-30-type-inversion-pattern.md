@@ -394,18 +394,18 @@ I'm not sure if this is a named pattern or not, but it definitely fits what I wo
 
 The purpose of this design pattern is to be able to share common functions of fluent-like interfaces and might typically be applied to the builder pattern for example.
 
-***Intent:** Allow a subclass to automatiically override the return type of a method on its parent class*
+***Intent:** Allow a subclass to automatically override the return type of a method on its parent class*
 
 The general class diagram for the pattern is:
 
 ![Pattern class diagram](/img/templatepattern/pattern.png)
-***Components:*** *Class diagram for the general case of the pattern.*
+***General:*** *Class diagram for the general case of the pattern.*
 {: class="figure"}
 
 And in the case of Java like languages:
 
 ![Pattern class diagram for Java like languages](/img/templatepattern/pattern2.png)
-***Components:*** *Class diagram for the pattern in the case of java like languages.*
+***Java/C\#:*** *Class diagram for the pattern in the case of java like languages.*
 {: class="figure"}
 
 
