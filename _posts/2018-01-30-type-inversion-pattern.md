@@ -394,7 +394,7 @@ I'm not sure if this is a named pattern or not, but it definitely fits what I wo
 
 The purpose of this design pattern is to be able to share common functions of fluent-like interfaces and might typically be applied to the builder pattern for example.
 
-***Intent:** Allow a subclass to override the return type of a method on its parent class*
+***Intent:** Allow a subclass to automatiically override the return type of a method on its parent class*
 
 The general class diagram for the pattern is:
 
