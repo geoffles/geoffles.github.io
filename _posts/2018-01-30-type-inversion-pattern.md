@@ -8,6 +8,8 @@ date: 2018-01-18 9:26:00+0200
 
 ***Abstract:** A design pattern which allows you to "inject" the return type of an abstract method from a subclass in C++, C#, and Java*
 
+**Edit 2018-01-31:** Some well learned folks over at /r/programming have identified this as [*F-Bounded Quantification*](https://en.wikipedia.org/wiki/Bounded_quantification#F-bounded_quantification), and more colloquially as the [*Curiously recurring template pattern*](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern).
+
 # Introduction
 
 Have you ever needed to create say a family of builders all with common methods on and also wanted to use a fluent style for the builders?
