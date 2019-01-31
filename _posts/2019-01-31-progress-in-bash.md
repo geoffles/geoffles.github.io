@@ -16,7 +16,7 @@ This post covers progress reporting for Bash scripts.
 
 # The Basics
 
-Progress reporting is achieved by rewriting the same line on the output, which can be achieved with a carriage return character `\r` and pritning the formatted progress message.
+Progress reporting is achieved by rewriting the same line on the output, which can be achieved with a carriage return character `\r` and printing the formatted progress message.
 
 You may want something like the following:
 
@@ -62,17 +62,17 @@ done
 
 # Breakdown
 
-Total, Count, and Percent are pretty straight forward.
+`TOTAL`, `COUNT`, and `PERCENT` are pretty straight forward and self explanatory.
 
-The start date captures the unix time when the process started, and time store the time taken to process so far. Remaning is a linear approximation of the remaining time given the time taken so far, and the number of items remaining.
+The `START_DATE` captures the Unix time when the process started, and `TIME` stores the time taken to process so far. `REMAINING` is a linear approximation of the remaining time given the time taken so far, and the number of items remaining.
 
-Barlen is a transformation of the percentage into a discrete range of 0 to 20.
+`BARLEN` is a transformation of the percentage into a discrete range of 0 to 20.
 
 The completion statistics are then printed, and the opening brace of the progress bar.
 
 The progress bar is printed one character at a time, with a `=` for done and a ` ` for not yet done.
 
-The closing brace is then printed and the remaining time estimate with space padding to cater for number size differences.
+The closing brace is then printed and the remaining time estimate with space padding to cater for number size differences which would leave trailing characters when they get shorter.
 
 # Packaged Up
 
@@ -106,7 +106,7 @@ function inc_progress() {
 
 init_progress "$(wc -l <Source list file> | cut "-d " -f1)"
 
-for i in <source list>
+for i in <Source list file>
 do
     inc_progress
 
@@ -116,10 +116,9 @@ done
 
 # Notes
 
-Bash only supports integers, therefore your number ranges should be projected into a range such that this is not an issue (eg, for the remaining time estimate)
+Bash only supports integers, therefore your number ranges should be projected into a range such that this is not an issue (eg, for the remaining time estimate).
 
-By placing your percent completed first, ConEmu will detect the progress and display it in the task bar and in the window title
-
+ConEmu will cleverly detect the precentage when it is surrounded by whitespace it seems.
 
 # Conclusion
 
