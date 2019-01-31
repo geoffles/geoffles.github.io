@@ -26,7 +26,7 @@ You may want something like the following:
 
 Which on windows with conemu will display as:
 
-![Layer stack for the system](/img/bashprogress/bashprogress.png)
+![Layer stack for the system](/img/bashprogress/bashProgress.png)
 ***Propagated Progress Indicators*** *The progress indicators are detected by ConEmu and displayed in the window title and on the taskbar in Windows*
 {: class="figure"}
 
